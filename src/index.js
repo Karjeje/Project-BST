@@ -7,16 +7,14 @@ class Node {
 }
 
 class Tree {
-  constructor(arr) {
-    this.root = buildTree(arr);
+  constructor(array) {
+    const sortedUnique = [...new Set(array).sort((a, b) => a - b)];
+    this.root = this.buildTree(sortedUnique, 0, sortedUnique.length - 1);
   }
 }
 
 function buildTree(array, start, end) {
-  if (array.length === 0) return null;
   if (start > end) return null;
-  const set = [...new Set(array)];
-  set.sort((a, b) => a - b);
 
   let mid = start + Math.floor((end - start) / 2);
   let root = new Node(array[mid]);
