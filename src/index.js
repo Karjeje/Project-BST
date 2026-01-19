@@ -11,18 +11,18 @@ class Tree {
     const sortedUnique = [...new Set(array).sort((a, b) => a - b)];
     this.root = this.buildTree(sortedUnique, 0, sortedUnique.length - 1);
   }
-}
 
-function buildTree(array, start, end) {
-  if (start > end) return null;
+  buildTree(array, start, end) {
+    if (start > end) return null;
 
-  let mid = start + Math.floor((end - start) / 2);
-  let root = new Node(array[mid]);
+    let mid = Math.floor((start + end) / 2);
+    let root = new Node(array[mid]);
 
-  root.left = buildTree(array, start, mid - 1);
-  root.right = buildTree(array, mid + 1, end);
+    root.left = this.buildTree(array, start, mid - 1);
+    root.right = this.buildTree(array, mid + 1, end);
 
-  return root;
+    return root;
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
