@@ -8,7 +8,7 @@ class Node {
 
 class Tree {
   constructor(array) {
-    const sortedUnique = [...new Set(array).sort((a, b) => a - b)];
+    const sortedUnique = [...new Set(array)].sort((a, b) => a - b);
     this.root = this.buildTree(sortedUnique, 0, sortedUnique.length - 1);
   }
 
