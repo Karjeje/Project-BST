@@ -24,13 +24,17 @@ class Tree {
     return root;
   }
 
-  insert(root, value) {
+  insert(value) {
+    this.root = this._insertRec(this.root, value);
+  }
+
+  _insertRec(root, value) {
     if (root === null) return new Node(value);
 
     if (value < root.data) {
-      root.left = this.insert(root.left, value);
+      root.left = this._insertRec(root.left, value);
     } else {
-      root.right = this.insert(root.right, value);
+      root.right = this._insertRec(root.right, value);
     }
 
     return root;
