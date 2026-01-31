@@ -48,6 +48,29 @@ class Tree {
 
     return curr;
   }
+
+  delete(value) {
+    this.root = this._deleteRec(this.root, value);
+  }
+
+  _deleteRec(root, value) {
+    if (root === null) return root;
+
+    if (root.data > value) {
+      root.left = this._deleteRec(root.left, value);
+    } else if (root.data < value) {
+      root.right = this._deleteRec(root.right, value);
+    } else {
+      if (root.left === null) return root.right;
+      if (root.right === null) return root.left;
+
+      const succ = this.getSuccessor(root);
+      root.data = succ.data;
+      root.right = this._deleteRec(root.right, succ.data);
+    }
+
+    return root;
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
