@@ -39,6 +39,15 @@ class Tree {
 
     return root;
   }
+
+  getSuccessor(curr) {
+    curr = curr.right;
+    while (curr !== null && curr.left !== null) {
+      curr = curr.left;
+    }
+
+    return curr;
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
