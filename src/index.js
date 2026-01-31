@@ -40,16 +40,16 @@ class Tree {
     return root;
   }
 
-  getSuccessor(curr) {
-    curr = curr.right;
-    while (curr !== null && curr.left !== null) {
+  getSuccessor(node) {
+    curr = node.right;
+    while (curr.left !== null) {
       curr = curr.left;
     }
 
     return curr;
   }
 
-  delete(value) {
+  deleteItem(value) {
     this.root = this._deleteRec(this.root, value);
   }
 
