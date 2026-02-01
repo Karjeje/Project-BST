@@ -71,6 +71,22 @@ class Tree {
 
     return root;
   }
+
+  find(value) {
+    return this._findRec(this.root, value);
+  }
+
+  _findRec(node, value) {
+    if (node === null) return null;
+
+    if (node.data === value) return node;
+
+    if (node.data < value) {
+      return this._findRec(node.right, value);
+    } else {
+      return this._findRec(node.left, value);
+    }
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
