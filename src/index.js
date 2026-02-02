@@ -126,6 +126,20 @@ class Tree {
 
     if (this.root) traverse();
   }
+
+  _preOrderRec(node, callback) {
+    if (node === null) return;
+
+    callback(node);
+    this._preOrderRec(node.left, callback);
+    this._preOrderRec(node.right, callback);
+  }
+
+  preOrderForEach(callback) {
+    if (typeof callback !== 'function')
+      throw new Error('A callback function is required.');
+    this._preOrderRec(this.root, callback);
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
