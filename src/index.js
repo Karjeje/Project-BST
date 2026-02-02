@@ -87,6 +87,24 @@ class Tree {
       return this._findRec(node.left, value);
     }
   }
+
+  levelOrderForEach(callback) {
+    if (typeof callback !== 'function')
+      throw new Error('A callback function is required.');
+
+    if (this.root === null) return;
+
+    const queue = [];
+    queue.push(this.root);
+
+    while (queue.length > 0) {
+      const curr = queue.shift();
+      callback(curr);
+
+      if (curr.left !== null) queue.push(curr.left);
+      if (curr.right !== null) queue.push(curr.right);
+    }
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
