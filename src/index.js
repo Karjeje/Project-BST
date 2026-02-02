@@ -140,6 +140,21 @@ class Tree {
       throw new Error('A callback function is required.');
     this._preOrderRec(this.root, callback);
   }
+
+  _inOrderRec(node, callback) {
+    if (node === null) return;
+
+    this._inOrderRec(node.left, callback);
+    callback(node);
+    this._inOrderRec(node.right, callback);
+  }
+
+  inOrderForEach(callback) {
+    if (typeof callback !== 'function')
+      throw new Error('A callback function is required.');
+
+    this._inOrderRec(this.root, callback);
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
