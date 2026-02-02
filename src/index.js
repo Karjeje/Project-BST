@@ -155,6 +155,21 @@ class Tree {
 
     this._inOrderRec(this.root, callback);
   }
+
+  _postOrderRec(node, callback) {
+    if (node === null) return;
+
+    this._postOrderRec(node.left, callback);
+    this._postOrderRec(node.right, callback);
+    callback(node);
+  }
+
+  postOrderForEach(callback) {
+    if (typeof callback !== 'function')
+      throw new Error('A callback function is required.');
+
+    this._postOrderRec(this.root, callback);
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
