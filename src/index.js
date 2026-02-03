@@ -170,6 +170,22 @@ class Tree {
 
     this._postOrderRec(this.root, callback);
   }
+
+  _heightRec(node) {
+    if (node === null) return -1;
+
+    const leftHeight = this._heightRec(node.left);
+    const rightHeight = this._heightRec(node.right);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  height(value) {
+    const node = this.find(value);
+    if (node === null) return null;
+
+    return this._heightRec(node);
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
