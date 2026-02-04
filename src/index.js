@@ -186,6 +186,23 @@ class Tree {
 
     return this._heightRec(node);
   }
+
+  depth(value) {
+    return this._depthRec(this.root, value);
+  }
+
+  _depthRec(node, value) {
+    if (node === null) return null;
+    if (node.data === value) return 0;
+
+    if (node.data > value) {
+      const leftDepth = this._depthRec(node.left, value);
+      return leftDepth === null ? null : leftDepth + 1;
+    } else {
+      const rightDepth = this._depthRec(node.right, value);
+      return rightDepth === null ? null : rightDepth + 1;
+    }
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
