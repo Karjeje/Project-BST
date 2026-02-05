@@ -203,6 +203,24 @@ class Tree {
       return rightDepth === null ? null : rightDepth + 1;
     }
   }
+
+  isBalanced() {
+    return this._checkBalance(this.root) !== -1;
+  }
+
+  _checkBalance(node) {
+    if (node === null) return 0;
+
+    const leftHeight = this._checkBalance(node.left);
+    if (leftHeight === -1) return -1;
+
+    const rightHeight = this._checkBalance(node.right);
+    if (rightHeight === -1) return -1;
+
+    if (Math.abs(leftHeight - rightHeight) > 1) return -1;
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
