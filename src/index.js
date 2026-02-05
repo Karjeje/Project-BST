@@ -33,7 +33,7 @@ class Tree {
 
     if (value < root.data) {
       root.left = this._insertRec(root.left, value);
-    } else {
+    } else if (value > root.data) {
       root.right = this._insertRec(root.right, value);
     }
 
