@@ -221,6 +221,15 @@ class Tree {
 
     return Math.max(leftHeight, rightHeight) + 1;
   }
+
+  rebalance() {
+    const values = [];
+
+    this.inOrderForEach((node) => values.push(node.data));
+
+    const sortedUnique = [...new Set(values)];
+    this.root = this.buildTree(sortedUnique, 0, sortedUnique.length - 1);
+  }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
