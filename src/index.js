@@ -41,7 +41,7 @@ class Tree {
   }
 
   getSuccessor(node) {
-    curr = node.right;
+    let curr = node.right;
     while (curr.left !== null) {
       curr = curr.left;
     }
